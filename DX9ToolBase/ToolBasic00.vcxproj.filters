@@ -7,7 +7,7 @@
     </Filter>
     <Filter Include="헤더 파일">
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
     </Filter>
     <Filter Include="리소스 파일">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
@@ -15,7 +15,28 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="DX9ToolBase.h">
+    <None Include="ReadMe.txt" />
+    <None Include="UserImages.bmp">
+      <Filter>리소스 파일</Filter>
+    </None>
+    <None Include="res\ToolBasic00.rc2">
+      <Filter>리소스 파일</Filter>
+    </None>
+    <None Include="res\ToolBasic00Doc.ico">
+      <Filter>리소스 파일</Filter>
+    </None>
+    <None Include="res\ToolBasic00.ico">
+      <Filter>리소스 파일</Filter>
+    </None>
+    <None Include="res\Toolbar.bmp">
+      <Filter>리소스 파일</Filter>
+    </None>
+    <None Include="res\Toolbar256.bmp">
+      <Filter>리소스 파일</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ToolBasic00.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="stdafx.h">
@@ -27,24 +48,27 @@
     <ClInclude Include="MainFrm.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="DX9ToolBaseDoc.h">
+    <ClInclude Include="ToolBasic00Doc.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="DX9ToolBaseView.h">
+    <ClInclude Include="ToolBasic00View.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Resource.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="MenuView.h">
+    <ClInclude Include="MenuFormView.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="MapView.h">
-      <Filter>헤더 파일</Filter>
+    <ClInclude Include="D3DApp.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="cMainGame.h">
+      <Filter>소스 파일</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="DX9ToolBase.cpp">
+    <ClCompile Include="ToolBasic00.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="stdafx.cpp">
@@ -53,44 +77,25 @@
     <ClCompile Include="MainFrm.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="DX9ToolBaseDoc.cpp">
+    <ClCompile Include="ToolBasic00Doc.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="DX9ToolBaseView.cpp">
+    <ClCompile Include="ToolBasic00View.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="MenuView.cpp">
+    <ClCompile Include="MenuFormView.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="MapView.cpp">
+    <ClCompile Include="D3DApp.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="cMainGame.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="DX9ToolBase.rc">
+    <ResourceCompile Include="ToolBasic00.rc">
       <Filter>리소스 파일</Filter>
     </ResourceCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="res\userimages.bmp">
-      <Filter>리소스 파일</Filter>
-    </Image>
-    <Image Include="res\DX9ToolBaseDoc.ico">
-      <Filter>리소스 파일</Filter>
-    </Image>
-    <Image Include="res\DX9ToolBase.ico">
-      <Filter>리소스 파일</Filter>
-    </Image>
-    <Image Include="res\Toolbar.bmp">
-      <Filter>리소스 파일</Filter>
-    </Image>
-    <Image Include="res\Toolbar256.bmp">
-      <Filter>리소스 파일</Filter>
-    </Image>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="res\DX9ToolBase.rc2">
-      <Filter>리소스 파일</Filter>
-    </None>
   </ItemGroup>
 </Project>
