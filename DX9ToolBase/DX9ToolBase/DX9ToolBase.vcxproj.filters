@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="DX9-ToolFramework.h">
+    <ClInclude Include="DX9ToolBase.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="stdafx.h">
@@ -27,10 +27,10 @@
     <ClInclude Include="MainFrm.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="DX9-ToolFrameworkDoc.h">
+    <ClInclude Include="DX9ToolBaseDoc.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="DX9-ToolFrameworkView.h">
+    <ClInclude Include="DX9ToolBaseView.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Resource.h">
@@ -38,7 +38,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="DX9-ToolFramework.cpp">
+    <ClCompile Include="DX9ToolBase.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="stdafx.cpp">
@@ -47,15 +47,15 @@
     <ClCompile Include="MainFrm.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="DX9-ToolFrameworkDoc.cpp">
+    <ClCompile Include="DX9ToolBaseDoc.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="DX9-ToolFrameworkView.cpp">
+    <ClCompile Include="DX9ToolBaseView.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="DX9ToolFramework.rc">
+    <ResourceCompile Include="DX9ToolBase.rc">
       <Filter>리소스 파일</Filter>
     </ResourceCompile>
   </ItemGroup>
@@ -63,10 +63,10 @@
     <Image Include="res\userimages.bmp">
       <Filter>리소스 파일</Filter>
     </Image>
-    <Image Include="res\DX9-ToolFrameworkDoc.ico">
+    <Image Include="res\DX9ToolBaseDoc.ico">
       <Filter>리소스 파일</Filter>
     </Image>
-    <Image Include="res\DX9-ToolFramework.ico">
+    <Image Include="res\DX9ToolBase.ico">
       <Filter>리소스 파일</Filter>
     </Image>
     <Image Include="res\Toolbar.bmp">
@@ -77,7 +77,7 @@
     </Image>
   </ItemGroup>
   <ItemGroup>
-    <None Include="res\DX9ToolFramework.rc2">
+    <None Include="res\DX9ToolBase.rc2">
       <Filter>리소스 파일</Filter>
     </None>
   </ItemGroup>

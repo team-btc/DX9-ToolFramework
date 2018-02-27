@@ -20,9 +20,9 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
-    <ProjectGuid>{1FF80D48-BFE4-431D-B1EA-CBE1EB946C0B}</ProjectGuid>
+    <ProjectGuid>{6A261D9D-3DD1-4941-825D-09148DE1B342}</ProjectGuid>
     <Keyword>MFCProj</Keyword>
-    <RootNamespace>DX9ToolFramework</RootNamespace>
+    <RootNamespace>DX9ToolBase</RootNamespace>
     <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -183,18 +183,18 @@
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="DX9-ToolFramework.h" />
-    <ClInclude Include="DX9-ToolFrameworkDoc.h" />
-    <ClInclude Include="DX9-ToolFrameworkView.h" />
+    <ClInclude Include="DX9ToolBase.h" />
+    <ClInclude Include="DX9ToolBaseDoc.h" />
+    <ClInclude Include="DX9ToolBaseView.h" />
     <ClInclude Include="MainFrm.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="DX9-ToolFramework.cpp" />
-    <ClCompile Include="DX9-ToolFrameworkDoc.cpp" />
-    <ClCompile Include="DX9-ToolFrameworkView.cpp" />
+    <ClCompile Include="DX9ToolBase.cpp" />
+    <ClCompile Include="DX9ToolBaseDoc.cpp" />
+    <ClCompile Include="DX9ToolBaseView.cpp" />
     <ClCompile Include="MainFrm.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -204,17 +204,17 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="DX9ToolFramework.rc" />
+    <ResourceCompile Include="DX9ToolBase.rc" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="res\DX9-ToolFramework.ico" />
-    <Image Include="res\DX9-ToolFrameworkDoc.ico" />
+    <Image Include="res\DX9ToolBase.ico" />
+    <Image Include="res\DX9ToolBaseDoc.ico" />
     <Image Include="res\Toolbar.bmp" />
     <Image Include="res\Toolbar256.bmp" />
     <Image Include="res\userimages.bmp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="res\DX9ToolFramework.rc2" />
+    <None Include="res\DX9ToolBase.rc2" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
