@@ -3,7 +3,7 @@
 
 
 cCamera::cCamera()
-    : m_fDistance(10)
+    : m_fDistance(5)
     , m_vEye(0, LOOKAT_POS, -m_fDistance)
     , m_vLookAt(0, LOOKAT_POS, 0)
     , m_vUp(0, 1, 0)

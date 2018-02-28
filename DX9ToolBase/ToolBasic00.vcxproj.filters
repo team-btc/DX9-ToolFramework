@@ -96,9 +96,6 @@
     <ClInclude Include="D3DApp.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="iCamera.h">
-      <Filter>Interface</Filter>
-    </ClInclude>
     <ClInclude Include="iObject.h">
       <Filter>Interface</Filter>
     </ClInclude>

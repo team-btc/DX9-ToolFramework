@@ -212,7 +212,6 @@
     <ClInclude Include="cMainGame.h" />
     <ClInclude Include="DataStructure.h" />
     <ClInclude Include="DefineMacro.h" />
-    <ClInclude Include="iCamera.h" />
     <ClInclude Include="iObject.h" />
     <ClInclude Include="MainFrm.h" />
     <ClInclude Include="MenuFormView.h" />

@@ -2,7 +2,6 @@
 #include "cSkinnedMesh.h"
 #include "cAllocateHierarchy.h"
 
-
 cSkinnedMesh::cSkinnedMesh(string szKey, string szFolder, string szFilename)
     : m_pRootFrame(NULL)
     , m_pAnimController(NULL)

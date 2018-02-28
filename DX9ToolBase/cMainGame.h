@@ -4,14 +4,16 @@
 #include <D3dx9shape.h>
 
 #include "cCamera.h"
+#include "cSkinnedMesh.h"
 
 class cMainGame : public CD3DApp
 {
 private:
     cCamera*    m_pCamera;
 
-    LPMESH      m_pMesh;
     Vector3     m_vRot;
+
+    cSkinnedMesh* m_pSkinMesh;
 
     CStringA m_szText;
 

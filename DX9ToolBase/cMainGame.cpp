@@ -6,7 +6,7 @@
 cMainGame::cMainGame(void)
     : m_szText("")
     , m_pCamera(NULL)
-    , m_pMesh(NULL)
+    , m_pSkinMesh(NULL)
     , m_vRot(0, 0, 0)
 {
 }
@@ -23,7 +23,8 @@ void cMainGame::OnInit()
     m_pCamera = new cCamera;
     m_pCamera->Setup(m_hWnd);
 
-    D3DXCreateBox(g_pDevice, 1, 1, 1, &m_pMesh, NULL);
+    m_pSkinMesh = new cSkinnedMesh("zealot", "unit/zealot", "zealot.x");
+    g_pAutoReleasePool->AddObject(m_pSkinMesh);
 }
 
 void cMainGame::OnUpdate()
@@ -58,20 +59,17 @@ void cMainGame::OnRender()
 {
     g_pTimerManager->Render();
 
-    if (m_pMesh)
+    Matrix4 matI;
+    D3DXMatrixIdentity(&matI);
+    g_pDevice->SetTransform(D3DTS_WORLD, &matI);
+    
+    if (m_pSkinMesh)
     {
-        Matrix4 matR;
-        D3DXMatrixRotationYawPitchRoll(&matR,
-                                       D3DXToRadian(m_vRot.y),
-                                       D3DXToRadian(m_vRot.x),
-                                       D3DXToRadian(m_vRot.z));
-        g_pDevice->SetTransform(D3DTS_WORLD, &matR);
-        m_pMesh->DrawSubset(0);
+        m_pSkinMesh->UpdateAndRender();
     }
 }
 
 void cMainGame::OnRelease()
 {
     SAFE_DELETE(m_pCamera);
-    SAFE_RELEASE(m_pMesh);
 }
