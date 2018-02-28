@@ -30,6 +30,9 @@ public:
 
 
 
+    afx_msg void OnBnClickedOkBtn();
+    afx_msg void OnBnClickedButton1();
+    afx_msg void OnBnClickedCancel();
 };
 
 

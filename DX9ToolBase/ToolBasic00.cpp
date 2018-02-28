@@ -194,8 +194,8 @@ BOOL CToolBasic00App::OnIdle(LONG lCount)
     }
     else
     {
-        g_pView->m_GameEdu01.Update();
-        g_pView->m_GameEdu01.Render();
+        g_pView->m_pMainGame->Update();
+        g_pView->m_pMainGame->Render();
     }
 
     return TRUE;

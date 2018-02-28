@@ -15,7 +15,7 @@ protected: // serialization에서만 만들어집니다.
     // 특성입니다.
 public:
     CToolBasic00Doc * GetDocument() const;
-    cMainGame m_GameEdu01;
+    cMainGame* m_pMainGame;
 
     // 작업입니다.
 public:

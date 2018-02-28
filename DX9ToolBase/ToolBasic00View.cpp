@@ -37,7 +37,7 @@ CToolBasic00View::CToolBasic00View()
 
 CToolBasic00View::~CToolBasic00View()
 {
-    m_GameEdu01.Cleanup();
+    m_pMainGame->Cleanup();
 }
 
 BOOL CToolBasic00View::PreCreateWindow(CREATESTRUCT& cs)
@@ -103,8 +103,8 @@ void CToolBasic00View::OnInitialUpdate()
     CView::OnInitialUpdate();
 
     // TODO: 여기에 특수화된 코드를 추가 및/또는 기본 클래스를 호출합니다.
-
-    m_GameEdu01.InitD3D(m_hWnd);
+    m_pMainGame = new cMainGame;
+    m_pMainGame->InitD3D(m_hWnd);
 }
 
 

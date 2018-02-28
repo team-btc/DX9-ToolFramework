@@ -5,8 +5,11 @@
 #include "ToolBasic00.h"
 #include "MenuFormView.h"
 
+#include "ToolBasic00View.h"
 
 // CMenuFormView
+
+extern CToolBasic00View *g_pView;
 
 IMPLEMENT_DYNCREATE(CMenuFormView, CFormView)
 
@@ -26,6 +29,9 @@ void CMenuFormView::DoDataExchange(CDataExchange* pDX)
 }
 
 BEGIN_MESSAGE_MAP(CMenuFormView, CFormView)
+    ON_BN_CLICKED(IDC_BUTTON1, &CMenuFormView::OnBnClickedButton1)
+    ON_BN_CLICKED(IDC_OK_BTN, &CMenuFormView::OnBnClickedOkBtn)
+    ON_BN_CLICKED(IDC_CANCEL, &CMenuFormView::OnBnClickedCancel)
 END_MESSAGE_MAP()
 
 
@@ -50,3 +56,20 @@ void CMenuFormView::Dump(CDumpContext& dc) const
 
 
 
+
+void CMenuFormView::OnBnClickedButton1()
+{
+    // TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
+    g_pView->m_pMainGame->SetText("TEST");
+}
+
+void CMenuFormView::OnBnClickedOkBtn()
+{
+    g_pView->m_pMainGame->SetText("");
+}
+
+void CMenuFormView::OnBnClickedCancel()
+{
+    // TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
+    g_pView->m_pMainGame->SetText("TEST");
+}

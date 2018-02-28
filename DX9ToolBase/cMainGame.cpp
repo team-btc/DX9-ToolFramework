@@ -4,6 +4,7 @@
 #include <stdio.h>
 
 cMainGame::cMainGame(void)
+    : m_szText("")
 {
 }
 
@@ -14,8 +15,6 @@ cMainGame::~cMainGame(void)
 
 void cMainGame::OnInit()
 {
-    int i;
-
     RECT rect;
     D3DVIEWPORT9 vp;
     GetClientRect(m_hWnd, &rect);
@@ -46,11 +45,11 @@ void cMainGame::OnInit()
     m_pd3dDevice->SetTransform(D3DTS_PROJECTION, &m_matProj);
     m_pd3dDevice->SetViewport(&vp);
 
-    D3DXCreateFont(m_pd3dDevice, 20, 0, FW_NORMAL, 1, FALSE, DEFAULT_CHARSET,
+    D3DXCreateFontA(m_pd3dDevice, 20, 0, FW_NORMAL, 1, FALSE, DEFAULT_CHARSET,
                    OUT_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_DONTCARE,
                    "System", &m_pFont);
 
-    D3DXCreateFont(m_pd3dDevice, 30, 0, FW_NORMAL, 1, FALSE, DEFAULT_CHARSET,
+    D3DXCreateFontA(m_pd3dDevice, 30, 0, FW_NORMAL, 1, FALSE, DEFAULT_CHARSET,
                    OUT_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_DONTCARE,
                    "µ¸¿òÃ¼", &m_pFont2);
 
@@ -64,7 +63,10 @@ void cMainGame::OnRender()
     RECT rt;
     SetRect(&rt, 10, 10, 0, 0);
     sprintf_s(string, -1, "FPS: %d", m_nFPS);
-    m_pFont->DrawText(NULL, string, -1, &rt, DT_NOCLIP, D3DXCOLOR(1.0f, 1.0f, 0.0f, 1.0f));
+    m_pFont->DrawTextA(NULL, string, -1, &rt, DT_NOCLIP, D3DXCOLOR(1.0f, 1.0f, 0.0f, 1.0f));
+    rt.top += 15;
+    rt.bottom += 15;
+    m_pFont->DrawTextA(NULL, m_szText, -1, &rt, DT_NOCLIP, D3DXCOLOR(1.0f, 1.0f, 0.0f, 1.0f));
 }
 
 void cMainGame::OnUpdate()
