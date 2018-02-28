@@ -21,7 +21,8 @@ void cAutoReleasePool::Drain()
 {
     for each (auto p in m_lstObject)
     {
-        while (p->Release());
+        while (p->Release() > 0);
+        //ULONG ul = p->Release();
     }
 
     m_lstObject.clear();

@@ -71,5 +71,10 @@ void cMainGame::OnRender()
 
 void cMainGame::OnRelease()
 {
+    g_pTextureManager->Destroy();
+    g_pShaderManager->Destroy();
+    g_pFontManager->Destory();
+    g_pMeshManager->Destroy();
+    g_pAutoReleasePool->Drain();
     SAFE_DELETE(m_pCamera);
 }
