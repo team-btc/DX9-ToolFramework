@@ -23,10 +23,6 @@
 #include <afxwin.h>         // MFC 핵심 및 표준 구성 요소입니다.
 #include <afxext.h>         // MFC 확장입니다.
 
-
-
-
-
 #ifndef _AFX_NO_OLE_SUPPORT
 #include <afxdtctl.h>           // Internet Explorer 4 공용 컨트롤에 대한 MFC 지원입니다.
 #endif
@@ -35,14 +31,6 @@
 #endif // _AFX_NO_AFXCMN_SUPPORT
 
 #include <afxcontrolbars.h>     // MFC의 리본 및 컨트롤 막대 지원
-
-
-
-
-
-
-
-
 
 #ifdef _UNICODE
 #if defined _M_IX86
@@ -54,4 +42,87 @@
 #endif
 #endif
 
+#define W_WIDTH 1600
+#define W_HEIGHT 900
 
+#define SINGLETON(class_name)\
+private:\
+    class_name();\
+    ~class_name();\
+public:\
+    static class_name* GetInstance()\
+    {\
+        static class_name instance;\
+        return &instance;\
+    }
+
+#define SAFE_DELETE(p) { if (p) delete (p); (p) = NULL; }
+#define SAFE_DELETE_ARRAY(p) { if (p) delete[] (p); (p) = NULL; }
+#define SAFE_RELEASE(p) { if (p) (p)->Release(); }
+#define SAFE_ADDREF(p) { if (p) (p)->AddRef(); }
+
+#define SYNTHESIZE(varType, varName, funName)\
+protected:\
+    varType varName;\
+public:\
+    inline varType Get##funName() const { return varName; }\
+    inline void Set##funName(varType var) { varName = var; }
+
+#define SYNTHESIZE_PASS_BY_REF(varType, varName, funName)\
+private:\
+    varType varName;\
+public:\
+    inline varType& Get##funName() { return varName; }\
+    inline void Set##funName(varType& var) { varName = var; }
+
+#define SYNTHESIZE_PASS_BY_PT(varType, varName, funName)\
+private:\
+    varType varName;\
+public:\
+    inline varType* Get##funName() { return &varName; }\
+    inline void Set##funName(varType& var) { varName = var; }
+
+#define SYNTHESIZE_ADD_REF(varType, varName, funName)\
+private:\
+    varType varName;\
+public:\
+    inline varType Get##funName() const { return varName; }\
+    inline void Set##funName(varType var)\
+    {\
+        if (varName != var)\
+        {\
+            SAFE_RELEASE(varName);\
+            SAFE_ADDREF(var);\
+            varName = var;\
+        }\
+    }
+
+
+using namespace std;
+
+#include <vector>
+#include <map>
+#include <string>
+#include <set>
+#include <list>
+#include <iostream>
+#include <fstream>
+
+#include <d3d9.h>
+#include <d3dx9.h>
+
+extern HWND g_hWnd;
+
+#include "DefineMacro.h"
+#include "DataStructure.h"
+
+#include "cKeyManager.h"
+#include "cLogManager.h"
+#include "cDeviceManager.h"
+#include "cTextureManager.h"
+#include "cFontManager.h"
+#include "cTimerManager.h"
+#include "cObjectManager.h"
+#include "cAutoReleasePool.h"
+#include "cMeshManager.h"
+#include "cShaderManager.h"

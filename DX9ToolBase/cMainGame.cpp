@@ -5,6 +5,9 @@
 
 cMainGame::cMainGame(void)
     : m_szText("")
+    , m_pCamera(NULL)
+    , m_pMesh(NULL)
+    , m_vRot(0, 0, 0)
 {
 }
 
@@ -15,83 +18,60 @@ cMainGame::~cMainGame(void)
 
 void cMainGame::OnInit()
 {
-    RECT rect;
-    D3DVIEWPORT9 vp;
-    GetClientRect(m_hWnd, &rect);
+    g_pKeyManager->Setup();
 
-    vp.X = 0;
-    vp.Y = 0;
-    vp.Width = rect.right - rect.left;  // ÁÂÇ¥°³³äÀÌ ¾Æ´Ï¶ó Å©±â °³³ä 800, 600 °è»êµÊ
-    vp.Height = rect.bottom - rect.top;
-    vp.MinZ = 0.0f;
-    vp.MaxZ = 1.0f;
+    m_pCamera = new cCamera;
+    m_pCamera->Setup(m_hWnd);
 
-    m_Eye.x = 0.0f;
-    m_Eye.y = 10.0f;
-    m_Eye.z = -32.0f;
-
-    m_At.x = 0.0f;
-    m_At.y = 0.0f;
-    m_At.z = 0.0f;
-
-    m_Up.x = 0.0f;
-    m_Up.y = 1.0f;
-    m_Up.z = 0.0f;
-
-    D3DXMatrixLookAtLH(&m_matView, &m_Eye, &m_At, &m_Up);
-    m_pd3dDevice->SetTransform(D3DTS_VIEW, &m_matView);
-
-    D3DXMatrixPerspectiveFovLH(&m_matProj, D3DX_PI / 4, 1.0f, 1.0f, 100.0f);
-    m_pd3dDevice->SetTransform(D3DTS_PROJECTION, &m_matProj);
-    m_pd3dDevice->SetViewport(&vp);
-
-    D3DXCreateFontA(m_pd3dDevice, 20, 0, FW_NORMAL, 1, FALSE, DEFAULT_CHARSET,
-                   OUT_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_DONTCARE,
-                   "System", &m_pFont);
-
-    D3DXCreateFontA(m_pd3dDevice, 30, 0, FW_NORMAL, 1, FALSE, DEFAULT_CHARSET,
-                   OUT_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_DONTCARE,
-                   "µ¸¿òÃ¼", &m_pFont2);
-
-    m_nFPSCount = 0;
-    m_nFPS = 0;
-}
-
-void cMainGame::OnRender()
-{
-    char string[100];
-    RECT rt;
-    SetRect(&rt, 10, 10, 0, 0);
-    sprintf_s(string, -1, "FPS: %d", m_nFPS);
-    m_pFont->DrawTextA(NULL, string, -1, &rt, DT_NOCLIP, D3DXCOLOR(1.0f, 1.0f, 0.0f, 1.0f));
-    rt.top += 15;
-    rt.bottom += 15;
-    m_pFont->DrawTextA(NULL, m_szText, -1, &rt, DT_NOCLIP, D3DXCOLOR(1.0f, 1.0f, 0.0f, 1.0f));
+    D3DXCreateBox(g_pDevice, 1, 1, 1, &m_pMesh, NULL);
 }
 
 void cMainGame::OnUpdate()
 {
-    DWORD dwCurTime = GetTickCount();
-    static DWORD dwOldTime = dwCurTime;
-    static DWORD dwAccumulateTime = 0; // ´©Àû ½Ã°£
-    m_dwElapsedTime = dwCurTime - dwOldTime;
-    dwOldTime = dwCurTime;
+    g_pTimerManager->Update(60.0f);
 
-    dwAccumulateTime += m_dwElapsedTime;
-    if (dwAccumulateTime >= 1000)
+    if (m_pCamera)
     {
-        dwAccumulateTime = 0;
-        m_nFPS = m_nFPSCount;
-        m_nFPSCount = 0;
+        m_pCamera->Update();
     }
-    else
+
+    if (g_pKeyManager->isStayKeyDown('A'))
     {
-        m_nFPSCount++;
+        m_vRot.y -= 1.0f;
+    }
+    else if (g_pKeyManager->isStayKeyDown('D'))
+    {
+        m_vRot.y += 1.0f;
+    }
+
+    if (g_pKeyManager->isStayKeyDown('W'))
+    {
+        m_vRot.x += 1.0f;
+    }
+    else if (g_pKeyManager->isStayKeyDown('S'))
+    {
+        m_vRot.x -= 1.0f;
+    }
+}
+
+void cMainGame::OnRender()
+{
+    g_pTimerManager->Render();
+
+    if (m_pMesh)
+    {
+        Matrix4 matR;
+        D3DXMatrixRotationYawPitchRoll(&matR,
+                                       D3DXToRadian(m_vRot.y),
+                                       D3DXToRadian(m_vRot.x),
+                                       D3DXToRadian(m_vRot.z));
+        g_pDevice->SetTransform(D3DTS_WORLD, &matR);
+        m_pMesh->DrawSubset(0);
     }
 }
 
 void cMainGame::OnRelease()
 {
-    m_pFont->Release();
-    m_pFont2->Release();
+    SAFE_DELETE(m_pCamera);
+    SAFE_RELEASE(m_pMesh);
 }

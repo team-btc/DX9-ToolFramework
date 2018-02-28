@@ -3,17 +3,18 @@
 //
 
 #include "stdafx.h"
-#include "ToolBasic00.h"
+#include "ToolBasic.h"
 
 #include "MainFrm.h"
-#include "ToolBasic00View.h"
+#include "ToolBasicView.h"
 #include "MenuFormView.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
 
-extern CToolBasic00View *g_pView;
+extern CToolBasicView *g_pView;
+HWND g_hWnd;
 
 // CMainFrame
 
@@ -176,12 +177,13 @@ BOOL CMainFrame::OnCreateClient(LPCREATESTRUCT /*lpcs*/,
         return FALSE;
     int nSizeX = rect.right - rect.left;
     int nMenuSize = nSizeX / 6; // 8분의 1 싸이즈로
-    if (!m_wndSplitter.CreateView(0, 0, RUNTIME_CLASS(CToolBasic00View), CSize(nSizeX - nMenuSize, 0), pContext))
+    if (!m_wndSplitter.CreateView(0, 0, RUNTIME_CLASS(CToolBasicView), CSize(nSizeX - nMenuSize, 0), pContext))
         return FALSE;
     if (!m_wndSplitter.CreateView(0, 1, RUNTIME_CLASS(CMenuFormView), CSize(nMenuSize, 0), pContext))
         return FALSE;
 
-    g_pView = (CToolBasic00View *)m_wndSplitter.GetPane(0, 0);
+    g_hWnd = m_hWnd;
+    g_pView = (CToolBasicView *)m_wndSplitter.GetPane(0, 0);
 
     return TRUE;
 }
@@ -194,8 +196,8 @@ BOOL CMainFrame::PreCreateWindow(CREATESTRUCT& cs)
     //  Window 클래스 또는 스타일을 수정합니다.
     cs.x = 0;
     cs.y = 0;
-    cs.cx = 1600;
-    cs.cy = 900;
+    cs.cx = W_WIDTH;
+    cs.cy = W_HEIGHT;
     cs.style &= ~FWS_ADDTOTITLE;
 
     SetTitle(_TEXT("DX9ToolBase"));  // 유니코드와 ANSI를 자유롭게 하는 매크로 함수(_TEXT) L은 유니코드로만 하라는 지시자이다.

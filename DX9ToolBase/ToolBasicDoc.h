@@ -6,11 +6,11 @@
 #pragma once
 
 
-class CToolBasic00Doc : public CDocument
+class CToolBasicDoc : public CDocument
 {
 protected: // serialization에서만 만들어집니다.
-    CToolBasic00Doc();
-    DECLARE_DYNCREATE(CToolBasic00Doc)
+    CToolBasicDoc();
+    DECLARE_DYNCREATE(CToolBasicDoc)
 
     // 특성입니다.
 public:
@@ -29,7 +29,7 @@ public:
 
     // 구현입니다.
 public:
-    virtual ~CToolBasic00Doc();
+    virtual ~CToolBasicDoc();
 #ifdef _DEBUG
     virtual void AssertValid() const;
     virtual void Dump(CDumpContext& dc) const;

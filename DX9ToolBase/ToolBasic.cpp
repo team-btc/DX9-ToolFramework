@@ -5,11 +5,11 @@
 #include "stdafx.h"
 #include "afxwinappex.h"
 #include "afxdialogex.h"
-#include "ToolBasic00.h"
+#include "ToolBasic.h"
 #include "MainFrm.h"
 
-#include "ToolBasic00Doc.h"
-#include "ToolBasic00View.h"
+#include "ToolBasicDoc.h"
+#include "ToolBasicView.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -18,17 +18,17 @@
 
 // CToolBasic00App
 
-BEGIN_MESSAGE_MAP(CToolBasic00App, CWinAppEx)
-    ON_COMMAND(ID_APP_ABOUT, &CToolBasic00App::OnAppAbout)
+BEGIN_MESSAGE_MAP(CToolBasicApp, CWinAppEx)
+    ON_COMMAND(ID_APP_ABOUT, &CToolBasicApp::OnAppAbout)
     // 표준 파일을 기초로 하는 문서 명령입니다.
     ON_COMMAND(ID_FILE_NEW, &CWinAppEx::OnFileNew)
     ON_COMMAND(ID_FILE_OPEN, &CWinAppEx::OnFileOpen)
 END_MESSAGE_MAP()
 
-CToolBasic00View *g_pView;
+CToolBasicView *g_pView;
 // CToolBasic00App 생성
 
-CToolBasic00App::CToolBasic00App()
+CToolBasicApp::CToolBasicApp()
 {
     m_bHiColorIcons = TRUE;
 
@@ -42,12 +42,12 @@ CToolBasic00App::CToolBasic00App()
 
 // 유일한 CToolBasic00App 개체입니다.
 
-CToolBasic00App theApp;
+CToolBasicApp theApp;
 
 
 // CToolBasic00App 초기화
 
-BOOL CToolBasic00App::InitInstance()
+BOOL CToolBasicApp::InitInstance()
 {
     // 응용 프로그램 매니페스트가 ComCtl32.dll 버전 6 이상을 사용하여 비주얼 스타일을
     // 사용하도록 지정하는 경우, Windows XP 상에서 반드시 InitCommonControlsEx()가 필요합니다. 
@@ -93,9 +93,9 @@ BOOL CToolBasic00App::InitInstance()
     CSingleDocTemplate* pDocTemplate;
     pDocTemplate = new CSingleDocTemplate(
         IDR_MAINFRAME,
-        RUNTIME_CLASS(CToolBasic00Doc),
+        RUNTIME_CLASS(CToolBasicDoc),
         RUNTIME_CLASS(CMainFrame),       // 주 SDI 프레임 창입니다.
-        RUNTIME_CLASS(CToolBasic00View));
+        RUNTIME_CLASS(CToolBasicView));
     if (!pDocTemplate)
         return FALSE;
     AddDocTemplate(pDocTemplate);
@@ -154,7 +154,7 @@ BEGIN_MESSAGE_MAP(CAboutDlg, CDialogEx)
 END_MESSAGE_MAP()
 
 // 대화 상자를 실행하기 위한 응용 프로그램 명령입니다.
-void CToolBasic00App::OnAppAbout()
+void CToolBasicApp::OnAppAbout()
 {
     CAboutDlg aboutDlg;
     aboutDlg.DoModal();
@@ -162,7 +162,7 @@ void CToolBasic00App::OnAppAbout()
 
 // CToolBasic00App 사용자 지정 로드/저장 메서드
 
-void CToolBasic00App::PreLoadState()
+void CToolBasicApp::PreLoadState()
 {
     BOOL bNameValid;
     CString strName;
@@ -171,11 +171,11 @@ void CToolBasic00App::PreLoadState()
     GetContextMenuManager()->AddMenu(strName, IDR_POPUP_EDIT);
 }
 
-void CToolBasic00App::LoadCustomState()
+void CToolBasicApp::LoadCustomState()
 {
 }
 
-void CToolBasic00App::SaveCustomState()
+void CToolBasicApp::SaveCustomState()
 {
 }
 
@@ -185,7 +185,7 @@ void CToolBasic00App::SaveCustomState()
 
 
 
-BOOL CToolBasic00App::OnIdle(LONG lCount)
+BOOL CToolBasicApp::OnIdle(LONG lCount)
 {
     // TODO: 여기에 특수화된 코드를 추가 및/또는 기본 클래스를 호출합니다.
     if (this->m_pMainWnd->IsIconic())

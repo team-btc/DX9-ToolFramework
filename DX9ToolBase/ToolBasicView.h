@@ -3,18 +3,18 @@
 //
 
 #pragma once
-#include "ToolBasic00Doc.h"
+#include "ToolBasicDoc.h"
 #include "cMainGame.h"
 
-class CToolBasic00View : public CView
+class CToolBasicView : public CView
 {
 protected: // serialization에서만 만들어집니다.
-    CToolBasic00View();
-    DECLARE_DYNCREATE(CToolBasic00View)
+    CToolBasicView();
+    DECLARE_DYNCREATE(CToolBasicView)
 
     // 특성입니다.
 public:
-    CToolBasic00Doc * GetDocument() const;
+    CToolBasicDoc * GetDocument() const;
     cMainGame* m_pMainGame;
 
     // 작업입니다.
@@ -28,7 +28,7 @@ protected:
 
     // 구현입니다.
 public:
-    virtual ~CToolBasic00View();
+    virtual ~CToolBasicView();
 #ifdef _DEBUG
     virtual void AssertValid() const;
     virtual void Dump(CDumpContext& dc) const;

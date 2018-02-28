@@ -6,10 +6,10 @@
 // SHARED_HANDLERS는 미리 보기, 축소판 그림 및 검색 필터 처리기를 구현하는 ATL 프로젝트에서 정의할 수 있으며
 // 해당 프로젝트와 문서 코드를 공유하도록 해 줍니다.
 #ifndef SHARED_HANDLERS
-#include "ToolBasic00.h"
+#include "ToolBasic.h"
 #endif
 
-#include "ToolBasic00Doc.h"
+#include "ToolBasicDoc.h"
 
 #include <propkey.h>
 
@@ -19,25 +19,25 @@
 
 // CToolBasic00Doc
 
-IMPLEMENT_DYNCREATE(CToolBasic00Doc, CDocument)
+IMPLEMENT_DYNCREATE(CToolBasicDoc, CDocument)
 
-BEGIN_MESSAGE_MAP(CToolBasic00Doc, CDocument)
+BEGIN_MESSAGE_MAP(CToolBasicDoc, CDocument)
 END_MESSAGE_MAP()
 
 
 // CToolBasic00Doc 생성/소멸
 
-CToolBasic00Doc::CToolBasic00Doc()
+CToolBasicDoc::CToolBasicDoc()
 {
     // TODO: 여기에 일회성 생성 코드를 추가합니다.
 
 }
 
-CToolBasic00Doc::~CToolBasic00Doc()
+CToolBasicDoc::~CToolBasicDoc()
 {
 }
 
-BOOL CToolBasic00Doc::OnNewDocument()
+BOOL CToolBasicDoc::OnNewDocument()
 {
     if (!CDocument::OnNewDocument())
         return FALSE;
@@ -53,7 +53,7 @@ BOOL CToolBasic00Doc::OnNewDocument()
 
 // CToolBasic00Doc serialization
 
-void CToolBasic00Doc::Serialize(CArchive& ar)
+void CToolBasicDoc::Serialize(CArchive& ar)
 {
     if (ar.IsStoring())
     {
@@ -122,12 +122,12 @@ void CToolBasic00Doc::SetSearchContent(const CString& value)
 // CToolBasic00Doc 진단
 
 #ifdef _DEBUG
-void CToolBasic00Doc::AssertValid() const
+void CToolBasicDoc::AssertValid() const
 {
     CDocument::AssertValid();
 }
 
-void CToolBasic00Doc::Dump(CDumpContext& dc) const
+void CToolBasicDoc::Dump(CDumpContext& dc) const
 {
     CDocument::Dump(dc);
 }
