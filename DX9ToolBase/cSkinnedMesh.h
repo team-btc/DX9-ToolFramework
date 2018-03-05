@@ -49,7 +49,7 @@ public:
         return &m_stBoundingSphere;
     }
 
-	HRESULT SetChangeAnim(IN CString name);
+	HRESULT SetChangeAnim(IN int index);
 	HRESULT SetAnimPlay(IN bool PlayState);
 	HRESULT SetSliderBarByAnimPosition(IN int Pos);
     HRESULT SetStatePos(IN float Pos);

@@ -337,14 +337,15 @@ void cSkinnedMesh::SetRandomTrackPosition()
 
 
 
-HRESULT cSkinnedMesh::SetChangeAnim(IN CString name)
+HRESULT cSkinnedMesh::SetChangeAnim(IN int index)
 {
 	HRESULT hr;
 
 	if (m_pAnimController)
 	{
 		LPANIMATIONSET pAnimSet = NULL;
-		m_pAnimController->GetAnimationSetByName(name, &pAnimSet);
+        m_pAnimController->GetAnimationSet(index, &pAnimSet);
+		//m_pAnimController->GetAnimationSetByName(name, &pAnimSet);
 		m_pAnimController->SetTrackAnimationSet(0, pAnimSet);
 		SAFE_RELEASE(pAnimSet);
 

@@ -31,6 +31,7 @@ void CMenuFormView::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_LIST_POSITION, m_PositionList);
 	DDX_Control(pDX, IDC_EDIT_NAME, m_EditName);
 	DDX_Control(pDX, IDC_EDIT_POSITION, m_EditPosition);
+    DDX_Control(pDX, IDC_EDIT_STATE_NAME, m_EditStateName);
 }
 
 BEGIN_MESSAGE_MAP(CMenuFormView, CFormView)
@@ -48,6 +49,8 @@ BEGIN_MESSAGE_MAP(CMenuFormView, CFormView)
 	ON_EN_CHANGE(IDC_EDIT_POSITION, &CMenuFormView::OnEnChangeEditPosition)
 	ON_EN_CHANGE(IDC_EDIT_NAME, &CMenuFormView::OnEnChangeEditName)
 	ON_BN_CLICKED(IDC_MINUS, &CMenuFormView::OnBnClickedMinus)
+    ON_EN_CHANGE(IDC_EDIT_STATE_NAME, &CMenuFormView::OnEnChangeEditStateName)
+    ON_BN_CLICKED(IDC_BUTTON_INPUT_STATE_NAME, &CMenuFormView::OnBnClickedButtonInputStateName)
 END_MESSAGE_MAP()
 
 
@@ -317,7 +320,7 @@ void CMenuFormView::OnBnClickedSave()
 
 	ofstream File;
 	File.open("JsonFile\\test.json");
-	File << SaveFile;
+	File << SaveFile.dump(4);
 	File.close();
 
 }
@@ -413,7 +416,7 @@ void CMenuFormView::OnLvnItemchangedListState(NMHDR *pNMHDR, LRESULT *pResult)
 		CurState = _ttoi(m_PreStateList.GetItemText(Select, 0));
 
 		if (pCreateSkin)
-			hr = pCreateSkin->SetChangeAnim(str);
+			hr = pCreateSkin->SetChangeAnim(CurState);
 
 		g_pView->m_pMainGame->SetText(str);
 		isClick = true;
@@ -435,7 +438,7 @@ void CMenuFormView::OnLvnItemchangedListPosition(NMHDR *pNMHDR, LRESULT *pResult
 
         if (pCreateSkin)
         {
-            hr = pCreateSkin->SetChangeAnim(str);
+            hr = pCreateSkin->SetChangeAnim(State);
             float pos = _ttof(m_PositionList.GetItemText(CurPositionList, 2));
             hr = pCreateSkin->SetStatePos(pos);
         }
@@ -444,6 +447,7 @@ void CMenuFormView::OnLvnItemchangedListPosition(NMHDR *pNMHDR, LRESULT *pResult
 	*pResult = 0;
 }
 
+//안씀
 void CMenuFormView::OnEnChangeEditPosition()
 {
 	// TODO:  RICHEDIT 컨트롤인 경우, 이 컨트롤은
@@ -455,7 +459,7 @@ void CMenuFormView::OnEnChangeEditPosition()
 
 }
 
-
+//안씀
 void CMenuFormView::OnEnChangeEditName()
 {
 	// TODO:  RICHEDIT 컨트롤인 경우, 이 컨트롤은
@@ -465,4 +469,28 @@ void CMenuFormView::OnEnChangeEditName()
 
 	// TODO:  여기에 컨트롤 알림 처리기 코드를 추가합니다.
 	
+}
+
+//안씀
+void CMenuFormView::OnEnChangeEditStateName()
+{
+    // TODO:  RICHEDIT 컨트롤인 경우, 이 컨트롤은
+    // CFormView::OnInitDialog() 함수를 재지정 
+    //하고 마스크에 OR 연산하여 설정된 ENM_CHANGE 플래그를 지정하여 CRichEditCtrl().SetEventMask()를 호출하지 않으면
+    // 이 알림 메시지를 보내지 않습니다.
+
+    // TODO:  여기에 컨트롤 알림 처리기 코드를 추가합니다.
+}
+
+
+void CMenuFormView::OnBnClickedButtonInputStateName()
+{
+    // TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
+    if (pCreateSkin)
+    {
+        CString str;
+       
+        m_EditStateName.GetWindowTextA(str);
+        m_PreStateList.SetItemText(CurState, 1, (LPCTSTR)str);
+    }
 }

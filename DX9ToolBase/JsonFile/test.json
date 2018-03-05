@@ -1,1 +1,22 @@
-{"State":[{"Name":"Stand","Position":[{"Name":"fgdgd","Value":"0.968512"}],"index":"0"},{"Name":"Attack","Position":[null,{"Name":"dfg","Value":"1.192197"}],"index":"2"},{"Name":"Walk","index":"1"}]}
+{
+    "State": [
+        {
+            "Name": "grgrg",
+            "Position": [
+                {
+                    "Name": "sdfsdf",
+                    "Value": "0.475190"
+                }
+            ],
+            "index": "0"
+        },
+        {
+            "Name": "Walk",
+            "index": "1"
+        },
+        {
+            "Name": "Attack",
+            "index": "2"
+        }
+    ]
+}

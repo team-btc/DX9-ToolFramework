@@ -43,6 +43,8 @@ public:
 	afx_msg void OnEnChangeEditName();
 	afx_msg void OnLvnItemchangedListState(NMHDR *pNMHDR, LRESULT *pResult);
 	afx_msg void OnLvnItemchangedListPosition(NMHDR *pNMHDR, LRESULT *pResult);
+    afx_msg void OnEnChangeEditStateName();
+    afx_msg void OnBnClickedButtonInputStateName();
 
 public:
     CSliderCtrl m_PositionSlider;
@@ -51,6 +53,7 @@ public:
 	CListCtrl m_PositionList;
 	CEdit	m_EditName;
 	CEdit	m_EditPosition;
+    CEdit   m_EditStateName;
 	cSkinnedMesh* pCreateSkin;
 
 	bool		isClick;
