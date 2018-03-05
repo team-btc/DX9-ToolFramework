@@ -24,11 +24,13 @@ BEGIN_MESSAGE_MAP(CToolBasicView, CView)
     ON_WM_CONTEXTMENU()
     ON_WM_RBUTTONUP()
     ON_WM_ERASEBKGND()
+    ON_COMMAND(ID_FILE_SAVE, &CToolBasicView::OnFileSave)   //  툴바 -> 파일 저장 이벤트
 END_MESSAGE_MAP()
 
 // CToolBasic00View 생성/소멸
 
 CToolBasicView::CToolBasicView()
+    :m_pMainGame(NULL)
 {
     // TODO: 여기에 생성 코드를 추가합니다.
 
@@ -103,8 +105,11 @@ void CToolBasicView::OnInitialUpdate()
     CView::OnInitialUpdate();
 
     // TODO: 여기에 특수화된 코드를 추가 및/또는 기본 클래스를 호출합니다.
-    m_pMainGame = new cMainGame;
-    m_pMainGame->InitD3D(m_hWnd);
+    if (!m_pMainGame)
+    {
+        m_pMainGame = new cMainGame;
+        m_pMainGame->InitD3D(m_hWnd);
+    }
 }
 
 
@@ -112,4 +117,9 @@ BOOL CToolBasicView::OnEraseBkgnd(CDC* pDC)
 {
     // TODO: 여기에 메시지 처리기 코드를 추가 및/또는 기본값을 호출합니다.
     return FALSE;
+}
+
+void CToolBasicView::OnFileSave()
+{
+    //  툴바 -> 파일 저장 이벤트 발생
 }

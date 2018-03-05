@@ -45,6 +45,8 @@ protected:
 public:
     virtual void OnInitialUpdate();
     afx_msg BOOL OnEraseBkgnd(CDC* pDC);
+
+    void OnFileSave();
 };
 
 #ifndef _DEBUG  // ToolBasic00View.cpp의 디버그 버전

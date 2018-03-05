@@ -21,8 +21,8 @@
 BEGIN_MESSAGE_MAP(CToolBasicApp, CWinAppEx)
     ON_COMMAND(ID_APP_ABOUT, &CToolBasicApp::OnAppAbout)
     // 표준 파일을 기초로 하는 문서 명령입니다.
-    ON_COMMAND(ID_FILE_NEW, &CWinAppEx::OnFileNew)
-    ON_COMMAND(ID_FILE_OPEN, &CWinAppEx::OnFileOpen)
+    ON_COMMAND(ID_FILE_NEW, &CToolBasicApp::OnFileNew)      //  툴바 -> 새 파일 이벤트
+    ON_COMMAND(ID_FILE_OPEN, &CToolBasicApp::OnFileOpen)    //  툴바 -> 파일 열기 이벤트
 END_MESSAGE_MAP()
 
 CToolBasicView *g_pView;
@@ -201,4 +201,14 @@ BOOL CToolBasicApp::OnIdle(LONG lCount)
     return TRUE;
 }
 
+void CToolBasicApp::OnFileNew()
+{
+    CWinAppEx::OnFileNew();
+    //  툴바 -> 새 파일 이벤트 발생
+}
 
+void CToolBasicApp::OnFileOpen()
+{
+    CWinAppEx::OnFileOpen();
+    //  툴바 -> 파일 열기 이벤트 발생
+}
