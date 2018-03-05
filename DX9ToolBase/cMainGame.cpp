@@ -30,6 +30,7 @@ void cMainGame::OnInit()
 void cMainGame::OnUpdate()
 {
     g_pTimerManager->Update(60.0f);
+    GetCursorPos(&g_ptMouse);
 
     if (m_pCamera)
     {

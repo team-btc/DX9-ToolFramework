@@ -112,6 +112,7 @@ using namespace std;
 #include <d3dx9.h>
 
 extern HWND g_hWnd;
+extern POINT g_ptMouse;
 
 #include "DefineMacro.h"
 #include "DataStructure.h"

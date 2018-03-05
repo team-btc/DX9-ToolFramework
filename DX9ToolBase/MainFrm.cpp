@@ -15,6 +15,7 @@
 
 extern CToolBasicView *g_pView;
 HWND g_hWnd;
+POINT g_ptMouse;
 
 // CMainFrame
 
