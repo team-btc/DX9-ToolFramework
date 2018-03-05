@@ -1,9 +1,7 @@
 #pragma once
 #include "afxcmn.h"
 #include "afxeditbrowsectrl.h"
-
-
-
+#include <string.h>
 
 // CMenuFormView Æû ºäÀÔ´Ï´Ù.
 
@@ -31,17 +29,36 @@ protected:
 public:
     virtual void OnInitialUpdate();
 
-    afx_msg void OnBnClickedOkBtn();
-    afx_msg void OnBnClickedButton1();
-    afx_msg void OnBnClickedCancel();
-    afx_msg void OnHScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar);
-    afx_msg void OnEnChangeEditBrowse();
-    afx_msg void OnLbnSelchangeList1();
+	afx_msg void OnEnChangeLoadBox();
+	afx_msg void OnHScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar);
+	afx_msg void OnBnClickedPlay();
+	afx_msg void OnBnClickedStop();
+	afx_msg void OnBnClickedAdd();
+	afx_msg void OnBnClickedMinus();
+	afx_msg void OnNMCustomdrawAnimPositionSlider(NMHDR *pNMHDR, LRESULT *pResult);
+	afx_msg void OnBnClickedSave();
+	afx_msg void OnBnClickedBntUp();
+	afx_msg void OnBnClickedBntDown();
+	afx_msg void OnEnChangeEditPosition();
+	afx_msg void OnEnChangeEditName();
+	afx_msg void OnLvnItemchangedListState(NMHDR *pNMHDR, LRESULT *pResult);
+	afx_msg void OnLvnItemchangedListPosition(NMHDR *pNMHDR, LRESULT *pResult);
 
 public:
-    CSliderCtrl m_sliderTest;
-    CMFCEditBrowseCtrl m_editBrowse;
-    CListBox m_listBox;
+    CSliderCtrl m_PositionSlider;
+    CMFCEditBrowseCtrl m_LoadBox;
+	CListCtrl m_PreStateList;
+	CListCtrl m_PositionList;
+	CEdit	m_EditName;
+	CEdit	m_EditPosition;
+	cSkinnedMesh* pCreateSkin;
+
+	bool		isClick;
+	int			Select;
+	int			CurState;
+	int			CurPositionList;
+
+	HRESULT SetSliderBar(IN int Pos);
 };
 
 

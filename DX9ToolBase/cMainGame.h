@@ -5,6 +5,7 @@
 
 #include "cCamera.h"
 #include "cSkinnedMesh.h"
+#include "MenuFormView.h"
 
 class cMainGame : public CD3DApp
 {
@@ -14,6 +15,7 @@ private:
     Vector3     m_vRot;
 
     cSkinnedMesh* m_pSkinMesh;
+	CMenuFormView* m_pMenuFormView;
 
     CStringA m_szText;
 
@@ -29,5 +31,8 @@ private:
 
 public:
     void SetText(CStringA szText) { m_szText = szText; }
+
+	HRESULT SetSkinedMesh(IN cSkinnedMesh* SkinnedMesh);
+	HRESULT SetMenuFormView(IN CMenuFormView* FormView);
 };
 

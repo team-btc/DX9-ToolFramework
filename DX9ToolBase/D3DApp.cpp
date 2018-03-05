@@ -72,10 +72,7 @@ void CD3DApp::Cleanup()
     OnRelease();
 
     if (m_pd3dDevice != NULL)
-    {
-        ULONG l = m_pd3dDevice->Release();
-        assert(l == 0 && "디바이스를 이용해서 생성한 객체 중 소멸되지 않은 객체가 있음!");
-    }
+        m_pd3dDevice->Release();
 
     if (m_pD3D != NULL)
         m_pD3D->Release();

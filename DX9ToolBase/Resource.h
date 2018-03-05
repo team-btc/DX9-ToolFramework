@@ -28,15 +28,22 @@
 #define ID_VIEW_APPLOOK_OFF_2007_AQUA   218
 #define ID_VIEW_APPLOOK_WINDOWS_7       219
 #define IDS_EDIT_MENU                   306
-#define IDD_MENUFORMVIEW                310
-#define IDC_BUTTON1                     1000
-#define IDC_CANCEL                      1001
-#define IDC_OK_BTN                      1002
-#define ID_SLIDER_TEST                  1003
-#define IDC_EDIT_BROWSE                 1004
-#define IDC_COMMIT                      1005
-#define IDC_RADIO1                      1006
-#define IDC_LIST1                       1007
+#define IDD_MENUFORMVIEW                410
+#define IDC_PLAY                        1000
+#define IDC_ADD                         1001
+#define IDC_SAVE                        1002
+#define ID_ANIM_POSITION_SLIDER         1003
+#define IDC_LOAD_BOX                    1004
+#define IDC_STOP                        1005
+#define IDC_BNT_UP                      1006
+#define IDC_MINUS                       1007
+#define IDC_BNT_DOWN                    1008
+#define IDC_EDIT_NAME                   1009
+#define IDC_EDIT_POSITION               1010
+#define IDC_TEXT_NAME_POSITION          1014
+#define IDC_TEXT_POSITION               1015
+#define IDC_LIST_POSITION               1020
+#define IDC_LIST_STATE                  1021
 
 // Next default values for new objects
 // 
@@ -44,7 +51,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        310
 #define _APS_NEXT_COMMAND_VALUE         32771
-#define _APS_NEXT_CONTROL_VALUE         1008
+#define _APS_NEXT_CONTROL_VALUE         1023
 #define _APS_NEXT_SYMED_VALUE           311
 #endif
 #endif

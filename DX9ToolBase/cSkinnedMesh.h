@@ -16,8 +16,10 @@ private:
     ST_SPHERE                   m_stBoundingSphere;
 
     // 객체마다 생성
-    LPANIMCONTROLLER   m_pAnimController;
+    LPANIMCONTROLLER			m_pAnimController;
     Vector3                     m_vPosition;
+
+	bool						isStop;
 
 private:
     cSkinnedMesh();
@@ -26,8 +28,8 @@ private:
     LPEFFECT LoadEffect(string szFilename);
     void Update(ST_BONE* pCurrent, Matrix4* pmatParent);
     void Render(ST_BONE* pBone = NULL);
+	void SetAnimationIndex(int nIndex);
     void SetupBoneMatrixPtrs(ST_BONE* pBone);
-    void SetAnimationIndex(int nIndex);
     virtual HRESULT Destroy() override;
 
 public:
@@ -46,4 +48,15 @@ public:
     {
         return &m_stBoundingSphere;
     }
+
+	HRESULT SetChangeAnim(IN CString name);
+	HRESULT SetAnimPlay(IN bool PlayState);
+	HRESULT SetSliderBarByAnimPosition(IN int Pos);
+    HRESULT SetStatePos(IN float Pos);
+
+	HRESULT GetAnimTotalPosition(OUT float* TotalPos);
+	HRESULT GetAnimCurPosition(OUT float* CurPos);
+	HRESULT GetStateCount(OUT int* Count);
+	HRESULT GetStateName(OUT string* name,IN int index);
+	HRESULT GetAnimPlay(OUT bool* PlayState);
 };

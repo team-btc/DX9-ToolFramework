@@ -42,6 +42,14 @@
 #endif
 #endif
 
+
+#ifdef _DEBUG
+#pragma comment(linker, "/entry:WinMainCRTStartup /subsystem:console")
+#endif
+
+#include "json.hpp"
+using json = nlohmann::json;
+
 #define W_WIDTH 1600
 #define W_HEIGHT 900
 
@@ -110,9 +118,9 @@ using namespace std;
 
 #include <d3d9.h>
 #include <d3dx9.h>
+#include <afx.h>
 
 extern HWND g_hWnd;
-extern POINT g_ptMouse;
 
 #include "DefineMacro.h"
 #include "DataStructure.h"

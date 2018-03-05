@@ -29,13 +29,13 @@ ULONG cObject::AddRef()
 
 ULONG cObject::Release()
 {
-    int c = --m_nRefCount;
+    --m_nRefCount;
     if (m_nRefCount <= 0)
     {
         delete this;
     }
 
-    return c;
+    return m_nRefCount;
 }
 
 HRESULT cObject::GetName(string& name)

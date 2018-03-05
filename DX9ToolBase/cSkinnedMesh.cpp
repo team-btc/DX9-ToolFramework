@@ -9,6 +9,7 @@ cSkinnedMesh::cSkinnedMesh(string szKey, string szFolder, string szFilename)
     , m_pmWorkingPalette(NULL)
     , m_pEffect(NULL)
     , m_vPosition(0, 0, 0)
+	, isStop(false)
 {
     cSkinnedMesh* pSkinnedMesh = g_pMeshManager->GetMesh(szKey, szFolder, szFilename);
 
@@ -32,6 +33,8 @@ cSkinnedMesh::cSkinnedMesh()
     , m_dwWorkingPaletteSize(0)
     , m_pmWorkingPalette(NULL)
     , m_pEffect(NULL)
+	, m_vPosition(0, 0, 0)
+	, isStop(false)
 {
 }
 
@@ -83,7 +86,14 @@ void cSkinnedMesh::UpdateAndRender()
 {
     if (m_pAnimController)
     {
-        m_pAnimController->AdvanceTime(g_pTimerManager->GetDeltaTime(), NULL);
+		if (isStop)
+		{
+			m_pAnimController->AdvanceTime(0, NULL);
+		}
+		else
+		{
+			m_pAnimController->AdvanceTime(g_pTimerManager->GetDeltaTime(), NULL);
+		}
     }
 
     if (m_pRootFrame)
@@ -323,4 +333,180 @@ HRESULT cSkinnedMesh::Destroy()
 void cSkinnedMesh::SetRandomTrackPosition()
 {
     m_pAnimController->SetTrackPosition(0, (rand() % 100) / 10.0f);
+}
+
+
+
+HRESULT cSkinnedMesh::SetChangeAnim(IN CString name)
+{
+	HRESULT hr;
+
+	if (m_pAnimController)
+	{
+		LPANIMATIONSET pAnimSet = NULL;
+		m_pAnimController->GetAnimationSetByName(name, &pAnimSet);
+		m_pAnimController->SetTrackAnimationSet(0, pAnimSet);
+		SAFE_RELEASE(pAnimSet);
+
+		hr = S_OK;
+	}
+	else
+	{
+		hr = E_PENDING;
+	}
+
+	return hr;
+}
+
+HRESULT cSkinnedMesh::SetAnimPlay(IN bool PlayState)
+{
+	HRESULT hr;
+
+	if (m_pAnimController)
+	{
+		//m_pAnimController->ResetTime();
+		isStop = !PlayState;
+		hr = S_OK;
+	}
+	else
+	{
+		hr = E_POINTER;
+	}
+
+	return hr;
+}
+
+HRESULT cSkinnedMesh::SetSliderBarByAnimPosition(IN int Pos)
+{
+	HRESULT hr;
+
+	if (m_pAnimController)
+	{
+		float fTotalPos;
+		GetAnimTotalPosition(&fTotalPos);
+		float floatPerPos =(float)Pos / 100.0f * fTotalPos;
+
+		m_pAnimController->SetTrackPosition(0, floatPerPos);
+
+		hr = S_OK;
+	}
+	else
+	{
+		hr = E_POINTER;
+	}
+
+	return hr;
+}
+
+HRESULT cSkinnedMesh::SetStatePos(IN float Pos)
+{
+    HRESULT hr;
+
+    if (m_pAnimController)
+    {
+        m_pAnimController->SetTrackPosition(0, Pos);
+        hr = S_OK;
+    }
+    else
+    {
+        hr = E_POINTER;
+    }
+
+    return hr;
+}
+
+HRESULT cSkinnedMesh::GetAnimTotalPosition(OUT float* TotalPos)
+{
+	HRESULT hr;
+
+	if (TotalPos && m_pAnimController)
+	{
+		LPD3DXANIMATIONSET AnimPosition;
+		m_pAnimController->GetTrackAnimationSet(0, &AnimPosition);
+		*TotalPos = AnimPosition->GetPeriod();
+
+		hr = S_OK;
+	}
+	else
+	{
+		hr = E_POINTER;
+	}
+
+	return hr;
+}
+
+HRESULT cSkinnedMesh::GetAnimCurPosition(OUT float* CurPos)
+{
+	HRESULT hr;
+
+	if (CurPos && m_pAnimController)
+	{
+		LPD3DXANIMATIONSET AnimPosition;
+		m_pAnimController->GetTrackAnimationSet(0, &AnimPosition);
+
+		D3DXTRACK_DESC desc2;
+		m_pAnimController->GetTrackDesc(0, &desc2);
+
+		*CurPos = fmodf(desc2.Position, AnimPosition->GetPeriod());
+
+		hr = S_OK;
+	}
+	else
+	{
+		hr = E_POINTER;
+	}
+	
+	return hr;
+}
+
+HRESULT cSkinnedMesh::GetStateCount(OUT int* Count)
+{
+	HRESULT hr;
+	if (Count && m_pAnimController)
+	{
+		*Count = m_pAnimController->GetMaxNumAnimationSets();
+		hr = S_OK;
+	}
+	else
+	{
+		hr = E_POINTER;
+	}
+	return hr;
+}
+
+HRESULT cSkinnedMesh::GetStateName(OUT string* name, IN int index)
+{
+	HRESULT hr;
+
+	if (name && m_pAnimController)
+	{
+		LPANIMATIONSET pAnimSet;
+		m_pAnimController->GetAnimationSet(index, &pAnimSet);
+		*name = pAnimSet->GetName();
+
+		hr = S_OK;
+	}
+	else
+	{
+		hr = E_POINTER;
+	}
+	
+	return hr;
+}
+
+HRESULT cSkinnedMesh::GetAnimPlay(OUT bool* PlayState)
+{
+	HRESULT hr;
+
+	if (PlayState)
+	{
+		*PlayState = !isStop;
+		hr = S_OK;
+	}
+	else
+	{
+		hr = E_POINTER;
+	}
+
+	return hr;
 }

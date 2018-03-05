@@ -15,7 +15,6 @@
 
 extern CToolBasicView *g_pView;
 HWND g_hWnd;
-POINT g_ptMouse;
 
 // CMainFrame
 
@@ -177,7 +176,7 @@ BOOL CMainFrame::OnCreateClient(LPCREATESTRUCT /*lpcs*/,
     if (!m_wndSplitter.CreateStatic(this, 1, 2))
         return FALSE;
     int nSizeX = rect.right - rect.left;
-    int nMenuSize = nSizeX / 6; // 8분의 1 싸이즈로
+    int nMenuSize = nSizeX / 4; // 8분의 1 싸이즈로
     if (!m_wndSplitter.CreateView(0, 0, RUNTIME_CLASS(CToolBasicView), CSize(nSizeX - nMenuSize, 0), pContext))
         return FALSE;
     if (!m_wndSplitter.CreateView(0, 1, RUNTIME_CLASS(CMenuFormView), CSize(nMenuSize, 0), pContext))
