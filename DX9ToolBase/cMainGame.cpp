@@ -33,7 +33,9 @@ void cMainGame::OnUpdate()
 
     if (m_pCamera)
     {
-        
+        if (m_pSkinMesh)
+            m_pCamera->Update(&m_pSkinMesh->GetPosition());
+        else
             m_pCamera->Update();
     }
 

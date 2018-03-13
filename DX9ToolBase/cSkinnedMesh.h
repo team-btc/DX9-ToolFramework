@@ -14,6 +14,7 @@ private:
     Matrix4*                    m_pmWorkingPalette;
     LPEFFECT                    m_pEffect;
     ST_SPHERE                   m_stBoundingSphere;
+    Matrix4                     m_matScale;
 
     // 객체마다 생성
     LPANIMCONTROLLER			m_pAnimController;
@@ -44,6 +45,7 @@ public:
         m_vPosition = v;
         m_stBoundingSphere.vCenter = v;
     }
+    void SetScale(float Scale) { D3DXMatrixScaling(&m_matScale, Scale, Scale, Scale); }
 
     Vector3 GetPosition() { return m_vPosition; }
     ST_SPHERE* GetBoundingSphere()

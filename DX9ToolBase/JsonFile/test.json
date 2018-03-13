@@ -1,13 +1,8 @@
 {
+    "Scale": "0.1",
     "State": [
         {
-            "Name": "grgrg",
-            "Position": [
-                {
-                    "Name": "sdfsdf",
-                    "Value": "0.475190"
-                }
-            ],
+            "Name": "Death",
             "index": "0"
         },
         {
@@ -17,6 +12,10 @@
         {
             "Name": "Attack",
             "index": "2"
+        },
+        {
+            "Name": "Stand",
+            "index": "3"
         }
     ]
 }

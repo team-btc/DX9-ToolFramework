@@ -47,6 +47,7 @@
 #define IDC_BUTTON_INPUT_STATE_NAME     1023
 #define IDC_EDIT_STATE_NAME             1024
 #define IDC_STATIC_NAME                 1025
+#define IDC_EDIT_ANIM_SCALE             1026
 
 // Next default values for new objects
 // 
@@ -54,7 +55,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        310
 #define _APS_NEXT_COMMAND_VALUE         32773
-#define _APS_NEXT_CONTROL_VALUE         1026
+#define _APS_NEXT_CONTROL_VALUE         1027
 #define _APS_NEXT_SYMED_VALUE           311
 #endif
 #endif

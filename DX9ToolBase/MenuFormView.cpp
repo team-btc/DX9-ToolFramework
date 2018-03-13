@@ -32,6 +32,7 @@ void CMenuFormView::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_EDIT_NAME, m_EditName);
 	DDX_Control(pDX, IDC_EDIT_POSITION, m_EditPosition);
     DDX_Control(pDX, IDC_EDIT_STATE_NAME, m_EditStateName);
+    DDX_Control(pDX, IDC_EDIT_ANIM_SCALE, m_EditAnimScale);
 }
 
 BEGIN_MESSAGE_MAP(CMenuFormView, CFormView)
@@ -51,6 +52,7 @@ BEGIN_MESSAGE_MAP(CMenuFormView, CFormView)
 	ON_BN_CLICKED(IDC_MINUS, &CMenuFormView::OnBnClickedMinus)
     ON_EN_CHANGE(IDC_EDIT_STATE_NAME, &CMenuFormView::OnEnChangeEditStateName)
     ON_BN_CLICKED(IDC_BUTTON_INPUT_STATE_NAME, &CMenuFormView::OnBnClickedButtonInputStateName)
+    ON_EN_CHANGE(IDC_EDIT_ANIM_SCALE, &CMenuFormView::OnEnChangeEditAnimScale)
 END_MESSAGE_MAP()
 
 
@@ -296,6 +298,7 @@ void CMenuFormView::OnBnClickedSave()
 	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
 	json SaveFile;
 
+    SaveFile["Scale"] = strScale.GetString();
 	for (int i = 0; i < m_PreStateList.GetItemCount(); i++)
 	{
 		CString StateNum, StateName;
@@ -492,5 +495,22 @@ void CMenuFormView::OnBnClickedButtonInputStateName()
        
         m_EditStateName.GetWindowTextA(str);
         m_PreStateList.SetItemText(CurState, 1, (LPCTSTR)str);
+    }
+}
+
+
+void CMenuFormView::OnEnChangeEditAnimScale()
+{
+    // TODO:  RICHEDIT 컨트롤인 경우, 이 컨트롤은
+    // CFormView::OnInitDialog() 함수를 재지정 
+    //하고 마스크에 OR 연산하여 설정된 ENM_CHANGE 플래그를 지정하여 CRichEditCtrl().SetEventMask()를 호출하지 않으면
+    // 이 알림 메시지를 보내지 않습니다.
+
+    // TODO:  여기에 컨트롤 알림 처리기 코드를 추가합니다.
+    if (pCreateSkin)
+    {
+        m_EditAnimScale.GetWindowTextA(strScale);
+        float Scale = _ttof(strScale);
+        pCreateSkin->SetScale(Scale);
     }
 }

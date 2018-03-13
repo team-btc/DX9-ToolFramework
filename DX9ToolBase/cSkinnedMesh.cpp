@@ -18,6 +18,7 @@ cSkinnedMesh::cSkinnedMesh(string szKey, string szFolder, string szFilename)
     m_pmWorkingPalette = pSkinnedMesh->m_pmWorkingPalette;
     m_pEffect = pSkinnedMesh->m_pEffect;
     m_stBoundingSphere = pSkinnedMesh->m_stBoundingSphere;
+    D3DXMatrixIdentity(&m_matScale);
 
     pSkinnedMesh->m_pAnimController->CloneAnimationController(
         pSkinnedMesh->m_pAnimController->GetMaxNumAnimationOutputs(),
@@ -36,6 +37,7 @@ cSkinnedMesh::cSkinnedMesh()
 	, m_vPosition(0, 0, 0)
 	, isStop(false)
 {
+    D3DXMatrixIdentity(&m_matScale);
 }
 
 cSkinnedMesh::~cSkinnedMesh(void)
@@ -98,10 +100,12 @@ void cSkinnedMesh::UpdateAndRender()
 
     if (m_pRootFrame)
     {
-        Matrix4 mat;
-        D3DXMatrixTranslation(&mat, m_vPosition.x, m_vPosition.y, m_vPosition.z);
+        Matrix4 matT, matW;
+        D3DXMatrixTranslation(&matT, m_vPosition.x, m_vPosition.y, m_vPosition.z);
 
-        Update(m_pRootFrame, &mat);
+        matW = m_matScale * matT;
+
+        Update(m_pRootFrame, &matW);
         Render(m_pRootFrame);
     }
 }

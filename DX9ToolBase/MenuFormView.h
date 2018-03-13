@@ -45,6 +45,7 @@ public:
 	afx_msg void OnLvnItemchangedListPosition(NMHDR *pNMHDR, LRESULT *pResult);
     afx_msg void OnEnChangeEditStateName();
     afx_msg void OnBnClickedButtonInputStateName();
+    afx_msg void OnEnChangeEditAnimScale();
 
 public:
     CSliderCtrl m_PositionSlider;
@@ -54,12 +55,14 @@ public:
 	CEdit	m_EditName;
 	CEdit	m_EditPosition;
     CEdit   m_EditStateName;
+    CEdit   m_EditAnimScale;
 	cSkinnedMesh* pCreateSkin;
 
 	bool		isClick;
 	int			Select;
 	int			CurState;
 	int			CurPositionList;
+    CString     strScale;
 
 	HRESULT SetSliderBar(IN int Pos);
 };
