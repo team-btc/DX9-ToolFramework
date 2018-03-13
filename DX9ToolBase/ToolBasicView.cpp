@@ -24,6 +24,9 @@ BEGIN_MESSAGE_MAP(CToolBasicView, CView)
     ON_WM_CONTEXTMENU()
     ON_WM_RBUTTONUP()
     ON_WM_ERASEBKGND()
+    ON_WM_MOUSEWHEEL()
+    ON_WM_RBUTTONDOWN()
+    ON_WM_MOUSEMOVE()
 END_MESSAGE_MAP()
 
 // CToolBasic00View 생성/소멸
@@ -31,7 +34,7 @@ END_MESSAGE_MAP()
 CToolBasicView::CToolBasicView()
 {
     // TODO: 여기에 생성 코드를 추가합니다.
-
+    m_isRButtonDown = false;
 
 }
 
@@ -63,8 +66,10 @@ void CToolBasicView::OnDraw(CDC* /*pDC*/)
 void CToolBasicView::OnRButtonUp(UINT /* nFlags */, CPoint point)
 {
     ClientToScreen(&point);
-    OnContextMenu(this, point);
+   // OnContextMenu(this, point);
+    m_isRButtonDown = false;
 }
+
 
 void CToolBasicView::OnContextMenu(CWnd* /* pWnd */, CPoint point)
 {
@@ -112,4 +117,55 @@ BOOL CToolBasicView::OnEraseBkgnd(CDC* pDC)
 {
     // TODO: 여기에 메시지 처리기 코드를 추가 및/또는 기본값을 호출합니다.
     return FALSE;
+}
+
+BOOL CToolBasicView::OnMouseWheel(UINT nFlags, short zDelta, CPoint pt)
+{
+    // TODO: 여기에 메시지 처리기 코드를 추가 및/또는 기본값을 호출합니다.
+    if (m_fDistance > 2)
+    {
+        m_fDistance -= zDelta / 100.0f;
+    }
+    else
+    {
+        m_fDistance = 2;
+        if (zDelta < 0)
+            m_fDistance -= zDelta / 100.0f;
+    }
+    return CView::OnMouseWheel(nFlags, zDelta, pt);
+}
+
+
+void CToolBasicView::OnRButtonDown(UINT nFlags, CPoint point)
+{
+    // TODO: 여기에 메시지 처리기 코드를 추가 및/또는 기본값을 호출합니다.
+    m_ptPrevMouse.x = point.x;
+    m_ptPrevMouse.y = point.y;
+    m_isRButtonDown = true;
+
+    CView::OnRButtonDown(nFlags, point);
+}
+
+
+void CToolBasicView::OnMouseMove(UINT nFlags, CPoint point)
+{
+    // TODO: 여기에 메시지 처리기 코드를 추가 및/또는 기본값을 호출합니다.
+    if (m_isRButtonDown)
+    {
+        POINT ptCurrMouse;
+        ptCurrMouse.x = point.x;
+        ptCurrMouse.y = point.y;
+
+        m_fRotY += (ptCurrMouse.x - m_ptPrevMouse.x) / 5.0f;
+        m_fRotX += (ptCurrMouse.y - m_ptPrevMouse.y) / 5.0f;
+
+        // x축 회전은 -90 ~ 90 으로 고정
+        if (m_fRotX < -D3DX_PI * LIMITED_ROT + D3DX_16F_EPSILON)
+            m_fRotX = -D3DX_PI * LIMITED_ROT + D3DX_16F_EPSILON;
+        else if (m_fRotX > D3DX_PI * LIMITED_ROT - D3DX_16F_EPSILON)
+            m_fRotX = D3DX_PI * LIMITED_ROT - D3DX_16F_EPSILON;
+
+        m_ptPrevMouse = ptCurrMouse;
+    }
+    CView::OnMouseMove(nFlags, point);
 }

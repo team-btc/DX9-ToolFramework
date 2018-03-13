@@ -6,7 +6,7 @@
 class cCamera
 {
 private:
-    float           m_fDistance;    // 큐브 기준 카메라 거리
+    //float    m_fDistance;    // 큐브 기준 카메라 거리
     Vector3         m_vEye;         // 카메라 위치
     Vector3         m_vLookAt;      // 바라보는 위치
     Vector3         m_vUp;          // 임의의 업 벡터
@@ -14,10 +14,10 @@ private:
     Matrix4         m_matView;
     Matrix4         m_matProj;
 
-    float           m_fRotX;
-    float           m_fRotY;
-    POINT           m_ptPrevMouse;
-    bool            m_isRButtonDown;
+    //float           m_fRotX;
+    //float           m_fRotY;
+    //POINT           m_ptPrevMouse;
+    //bool            m_isRButtonDown;
     bool            m_isFocus;
     HWND            m_hWnd;
 public:

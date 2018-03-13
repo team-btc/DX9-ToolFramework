@@ -44,6 +44,8 @@ public:
         m_vPosition = v;
         m_stBoundingSphere.vCenter = v;
     }
+
+    Vector3 GetPosition() { return m_vPosition; }
     ST_SPHERE* GetBoundingSphere()
     {
         return &m_stBoundingSphere;

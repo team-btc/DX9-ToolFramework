@@ -17,6 +17,8 @@ private:
     cSkinnedMesh* m_pSkinMesh;
 	CMenuFormView* m_pMenuFormView;
 
+    LPMESH      m_pBox;
+
     CStringA m_szText;
 
 public:

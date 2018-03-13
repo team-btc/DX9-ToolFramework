@@ -3,13 +3,12 @@
 
 
 cCamera::cCamera()
-    : m_fDistance(5)
-    , m_vEye(0, LOOKAT_POS, -m_fDistance)
+    : m_vEye(0, LOOKAT_POS, -m_fDistance)
     , m_vLookAt(0, LOOKAT_POS, 0)
     , m_vUp(0, 1, 0)
-    , m_fRotX(0)
-    , m_fRotY(0)
-    , m_isRButtonDown(false)
+    //, m_fRotX(0)
+    //, m_fRotY(0)
+    //, m_isRButtonDown(false)
     , m_isFocus(false)
 {
 }

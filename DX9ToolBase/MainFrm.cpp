@@ -15,6 +15,12 @@
 
 extern CToolBasicView *g_pView;
 HWND g_hWnd;
+int g_nWheel;
+float m_fDistance = 5;
+POINT m_ptPrevMouse;
+bool m_isRButtonDown = false;
+float m_fRotX =0;
+float m_fRotY =0;
 
 // CMainFrame
 

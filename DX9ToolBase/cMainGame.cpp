@@ -23,6 +23,8 @@ void cMainGame::OnInit()
 
     m_pCamera = new cCamera;
     m_pCamera->Setup(m_hWnd);
+
+    D3DXCreateBox(g_pDevice, 1, 1, 1, &m_pBox, NULL);
 }
 
 void cMainGame::OnUpdate()
@@ -31,7 +33,8 @@ void cMainGame::OnUpdate()
 
     if (m_pCamera)
     {
-        m_pCamera->Update();
+        
+            m_pCamera->Update();
     }
 
 	//쓰는이유: MenuFormView에 업데이트가 없어서..
@@ -74,6 +77,8 @@ void cMainGame::OnRender()
 		&rt,
 		DT_LEFT | DT_NOCLIP,
 		D3DCOLOR_XRGB(128, 128, 128));
+
+    m_pBox->DrawSubset(0);
     
     if (m_pSkinMesh)
     {

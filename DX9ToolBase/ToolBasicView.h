@@ -35,7 +35,7 @@ public:
 #endif
 
 protected:
-
+    bool            m_isRButtonDown;
     // 생성된 메시지 맵 함수
 protected:
     afx_msg void OnFilePrintPreview();
@@ -45,6 +45,9 @@ protected:
 public:
     virtual void OnInitialUpdate();
     afx_msg BOOL OnEraseBkgnd(CDC* pDC);
+    afx_msg BOOL OnMouseWheel(UINT nFlags, short zDelta, CPoint pt);
+    afx_msg void OnRButtonDown(UINT nFlags, CPoint point);
+    afx_msg void OnMouseMove(UINT nFlags, CPoint point);
 };
 
 #ifndef _DEBUG  // ToolBasic00View.cpp의 디버그 버전

@@ -121,6 +121,11 @@ using namespace std;
 #include <afx.h>
 
 extern HWND g_hWnd;
+extern float m_fDistance;
+extern POINT m_ptPrevMouse;
+extern bool m_isRButtonDown;
+extern float m_fRotX;
+extern float m_fRotY;
 
 #include "DefineMacro.h"
 #include "DataStructure.h"
