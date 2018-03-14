@@ -296,36 +296,52 @@ void CMenuFormView::OnNMCustomdrawAnimPositionSlider(NMHDR *pNMHDR, LRESULT *pRe
 void CMenuFormView::OnBnClickedSave()
 {
 	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
-	json SaveFile;
 
-    SaveFile["Scale"] = strScale.GetString();
-	for (int i = 0; i < m_PreStateList.GetItemCount(); i++)
-	{
-		CString StateNum, StateName;
-		StateNum = m_PreStateList.GetItemText(i, 0);
-		StateName = m_PreStateList.GetItemText(i, 1);
+    char name_filter[] = "All Files (*.*)|*.*|json Files (*.json)|*.json|";
 
-		SaveFile["State"][i]["index"] = StateNum.GetString();
-		SaveFile["State"][i]["Name"] = StateName.GetString();
-		for (int j = 0; j < m_PositionList.GetItemCount(); j++)
-		{
-			CString PositionIndex,PositionName, PositionValue;
-            PositionIndex = m_PositionList.GetItemText(j, 0);
-            if (StateNum == PositionIndex)
+    CFileDialog ins_dlg(FALSE, "json", "*.json", OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT |
+        OFN_NOCHANGEDIR, name_filter, NULL);
+
+    ins_dlg.m_ofn.nFilterIndex = 2;
+
+    // 다이얼로그를 띄운다.
+    if (ins_dlg.DoModal() == IDOK) {
+        // 선택한 파일의 이름을 에디트 박스에 출력한다.
+       // SetDlgItemText(IDC_FILE_NAME_EDIT, ins_dlg.GetFileName());
+        // 선택한 파일의 이름을 포함한 경로를 에디트 박스에 출력한다.
+        //SetDlgItemText(IDC_FILE_PATH_EDIT, ins_dlg.GetPathName());
+        CString str = ins_dlg.GetPathName();
+
+        json SaveFile;
+
+        SaveFile["Scale"] = strScale.GetString();
+        for (int i = 0; i < m_PreStateList.GetItemCount(); i++)
+        {
+            CString StateNum, StateName;
+            StateNum = m_PreStateList.GetItemText(i, 0);
+            StateName = m_PreStateList.GetItemText(i, 1);
+
+            SaveFile["State"][i]["index"] = StateNum.GetString();
+            SaveFile["State"][i]["Name"] = StateName.GetString();
+            for (int j = 0; j < m_PositionList.GetItemCount(); j++)
             {
-                PositionName = m_PositionList.GetItemText(j, 1);
-                PositionValue = m_PositionList.GetItemText(j, 2);
-                SaveFile["State"][i]["Position"][j]["Name"] = PositionName.GetString();
-                SaveFile["State"][i]["Position"][j]["Value"] = PositionValue.GetString();
+                CString PositionIndex, PositionName, PositionValue;
+                PositionIndex = m_PositionList.GetItemText(j, 0);
+                if (StateNum == PositionIndex)
+                {
+                    PositionName = m_PositionList.GetItemText(j, 1);
+                    PositionValue = m_PositionList.GetItemText(j, 2);
+                    SaveFile["State"][i]["Position"][j]["Name"] = PositionName.GetString();
+                    SaveFile["State"][i]["Position"][j]["Value"] = PositionValue.GetString();
+                }
             }
-		}
-	}
+        }
 
-	ofstream File;
-	File.open("JsonFile\\test.json");
-	File << SaveFile.dump(4);
-	File.close();
-
+        ofstream File;
+        File.open(str.GetString());
+        File << SaveFile.dump(4);
+        File.close();
+    }
 }
 
 HRESULT CMenuFormView::SetSliderBar(IN int Pos)
